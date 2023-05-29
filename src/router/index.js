@@ -9,6 +9,11 @@ const routes = [
     name: 'Home',
   },
   {
+    path: '/about',
+    name: 'About',
+    component: () => import('@/views/AboutView.vue')
+  },
+  {
     path: '/students',
     name: 'Students',
     component: () => import('@/views/StudentsView.vue')
@@ -32,6 +37,16 @@ const routes = [
     path: '/lecturesandstudents',
     name: 'LecturesStudents',
     component: () => import('../views/LecturesStudentsView.vue')
+  },
+  {
+    path: '/students/edit/:id',
+    name: 'studentEdit',
+    component: () => import('../views/StudentEditView.vue')
+  },
+  {
+    path: '/professors/edit/:id',
+    name: 'professorEdit',
+    component: () => import('../views/ProfessorEditView.vue')
   },
 ]
 

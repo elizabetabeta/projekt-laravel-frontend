@@ -1,32 +1,26 @@
 <template>
-    <div class="home pa-5">
-
-        <v-data-table :headers="stupci" :items="profs" :loading="ucitavam">
+    <div class="pa-5">
+        <br>
+        <div class="d-flex justify-space-between mb-6">
+        <h1>Profesori</h1>
+        <v-btn color="primary" @click="dialog=true">
+            Dodaj novog profesora
+        </v-btn>
+        </div>
+        <br>
+        <v-data-table :headers="stupci" :items="profs" :loading="ucitavam" style="background-color: #A1887F">
 
             <template v-slot:[`item.akcije`]="{ item }">
                 <v-btn color="red" class="white--text" small href="#" @click="deleteProf(item.id)">Izbriši</v-btn>
+                <v-btn color="primary" class="white--text" small
+                       :href="'/professors/edit/' + item.id">Uredi</v-btn>
             </template>
 
         </v-data-table>
 
-        <v-btn color="primary" @click="getProfs()"> Dohvati profesore </v-btn>
+        <!--<v-btn color="primary" @click="getProfs()"> Dohvati profesore </v-btn>-->
 
         <br><br>
-
-        <v-text-field v-model="forma.name" placeholder="Unesi ime"
-                      v-on:keyup.enter="addProf()"></v-text-field>
-        <v-text-field v-model="forma.username" placeholder="Unesi email"
-                      v-on:keyup.enter="addProf()"></v-text-field>
-        <v-text-field v-model="forma.password" placeholder="Unesi lozinku"
-                      v-on:keyup.enter="addProf()"></v-text-field>
-        <v-text-field v-model="forma.user_type" placeholder="Unesi tip korisnika"
-                      v-on:keyup.enter="addProf()"></v-text-field>
-
-        <br><br>
-        <v-btn color="primary" @click="addProf()">
-            Dodaj profesora
-        </v-btn>
-
 
 
         <v-snackbar
@@ -36,6 +30,50 @@
         >
             {{ snackbar.text }}
         </v-snackbar>
+        <template>
+            <v-row justify="center">
+                <v-dialog
+                    v-model="dialog"
+                    persistent
+                    width="1024"
+                >
+                    <v-card>
+                        <v-card-title>
+                            <span class="text-h5">Dodaj profesora</span>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-container>
+                                <v-text-field v-model="forma.name" placeholder="Unesi ime"
+                                              v-on:keyup.enter="addProf()"></v-text-field>
+                                <v-text-field v-model="forma.surname" placeholder="Unesi prezime"
+                                              v-on:keyup.enter="addProf()"></v-text-field>
+                                <v-text-field v-model="forma.title" placeholder="Unesi titulu"
+                                              v-on:keyup.enter="addProf()"></v-text-field>
+                                <v-autocomplete :items="genders" v-model="forma.gender"
+                                                placeholder="Spol"></v-autocomplete>
+                            </v-container>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="blue-darken-1"
+                                variant="text"
+                                @click="dialog = false"
+                            >
+                                Zatvori
+                            </v-btn>
+                            <v-btn
+                                color="primary"
+                                variant="text"
+                                @click="addProf(); dialog = false"
+                            >
+                                Dodaj
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-row>
+        </template>
 
     </div>
 </template>
@@ -51,19 +89,24 @@ export default {
                 color: '',
                 text: ''
             },
+            dialog: false,
             poruka: 'Test',
             forma: {
                 name: '',
-                username: '',
-                password: '',
-                user_type: '',
+                surname: '',
+                title: '',
+                gender: '',
             },
             profs: [],
+            genders: [
+                {text: 'M', value: 'M'},
+                {text: 'Ž', value: 'F'}
+            ],
             stupci: [
-                {text: 'Name', value: 'name'},
-                {text: 'Username', value: 'username'},
-                {text: 'Password', value: 'password'},
-                {text: 'Type of user', value: 'user_type'},
+                {text: 'Ime', value: 'name'},
+                {text: 'Prezime', value: 'surname'},
+                {text: 'Titula', value: 'title'},
+                {text: 'Spol', value: 'gender'},
                 {text: 'Akcije', value: 'akcije'}
             ],
             ucitavam: false,

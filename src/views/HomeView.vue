@@ -1,12 +1,10 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="home pa-5">
+  <h1>Dobrodošli</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: 'HomeView',
 

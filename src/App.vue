@@ -2,46 +2,28 @@
     <v-app id="inspire">
         <v-app-bar
                 app
-                color="white"
+                style="background-color: #A1887F"
                 flat
         >
             <v-container class="py-0 fill-height">
+
                 <v-avatar
                         class="mr-10"
-                        color="grey darken-1"
                         size="32"
-                ></v-avatar>
-<!--
-                <v-btn
-                        v-for="link in links"
-                        :key="link.route"
-                        :to="link.route"
-                        text
-
                 >
-                    {{ link.text }}
-                </v-btn>
+                    <v-img src="https://cdn2.iconfinder.com/data/icons/maps-and-locations/12/school-512.png"></v-img>
+                </v-avatar>
+                <h3>Aplikacija za vođenje evidencije prisutnosti na predavanjima</h3>
 
--->
-                <v-spacer></v-spacer>
-
-                <v-responsive max-width="260">
-                    <v-text-field
-                            dense
-                            flat
-                            hide-details
-                            rounded
-                            solo-inverted
-                    ></v-text-field>
-                </v-responsive>
             </v-container>
         </v-app-bar>
 
-        <v-main class="grey lighten-3">
+        <v-main>
+            <v-img src = "https://www.snexplores.org/wp-content/uploads/2019/11/860_main_library_bacteria.png">
             <v-container>
                 <v-row>
                     <v-col cols="2">
-                        <v-sheet rounded="lg">
+                        <v-sheet rounded="lg" style="background-color: #A1887F">
                             <v-list color="transparent">
                                 <v-list-item
                                     v-for="link in links"
@@ -56,18 +38,6 @@
                                     </v-list-item-content>
                                 </v-list-item>
 
-                                <v-divider class="my-2"></v-divider>
-
-                                <v-list-item
-                                        link
-                                        color="grey lighten-4"
-                                >
-                                    <v-list-item-content>
-                                        <v-list-item-title>
-                                            Refresh
-                                        </v-list-item-title>
-                                    </v-list-item-content>
-                                </v-list-item>
                             </v-list>
                         </v-sheet>
                     </v-col>
@@ -76,42 +46,41 @@
                         <v-sheet
                                 min-height="70vh"
                                 rounded="lg"
+                                style="background-color: #A1887F"
                         >
                             <router-view/>
                         </v-sheet>
                     </v-col>
                 </v-row>
             </v-container>
+            </v-img>
         </v-main>
     </v-app>
 </template>
 
 <script>
+
 export default {
     data: () => ({
         links: [
             {
-                text: "Home",
-                route: "/",
-            },
-            {
-                text: "Professors",
+                text: "Profesori",
                 route: "/professors",
             },
             {
-                text: "Students",
+                text: "Studenti",
                 route: "/students",
             },
             {
-                text: "Subjects",
+                text: "Predmeti",
                 route: "/subjects",
             },
             {
-                text: "Lectures",
+                text: "Predavanja",
                 route: "/lectures",
             },
             {
-                text: "Students on lectures",
+                text: "Prisustvo",
                 route: "/lecturesandstudents",
             },
         ],
